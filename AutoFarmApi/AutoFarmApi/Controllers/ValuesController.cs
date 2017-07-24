@@ -1,52 +1,84 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Swashbuckle.Swagger.Annotations;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System;
 
 namespace AutoFarmApi.Controllers
 {
-    public class ValuesController : ApiController
+    public class ActionDetectionController : ApiController
     {
-        // GET api/values
-        [SwaggerOperation("GetAll")]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        public object WebImage { get; private set; }
 
-        // GET api/values/5
-        [SwaggerOperation("GetById")]
-        [SwaggerResponse(HttpStatusCode.OK)]
-        [SwaggerResponse(HttpStatusCode.NotFound)]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         // POST api/values
         [SwaggerOperation("Create")]
         [SwaggerResponse(HttpStatusCode.Created)]
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Post()
         {
-        }
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            try
+            {
 
-        // PUT api/values/5
-        [SwaggerOperation("Update")]
-        [SwaggerResponse(HttpStatusCode.OK)]
-        [SwaggerResponse(HttpStatusCode.NotFound)]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+                var httpRequest = System.Web.HttpContext.Current.Request;
 
-        // DELETE api/values/5
-        [SwaggerOperation("Delete")]
-        [SwaggerResponse(HttpStatusCode.OK)]
-        [SwaggerResponse(HttpStatusCode.NotFound)]
-        public void Delete(int id)
-        {
+                foreach (string file in httpRequest.Files)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+
+                    var postedFile = httpRequest.Files[file];
+                    if (postedFile != null && postedFile.ContentLength > 0)
+                    {
+
+                        int MaxContentLength = 32 * 32 * 1; //Size = 1 MB
+
+                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
+                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                        var extension = ext.ToLower();
+                        if (!AllowedFileExtensions.Contains(extension))
+                        {
+
+                            var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else if (postedFile.ContentLength > MaxContentLength)
+                        {
+
+                            var message = string.Format("Please Upload a file upto 1 mb.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else
+                        {
+                            var filePath = "";
+                            //Userimage myfolder name where i want to save my image
+                            postedFile.SaveAs(filePath);
+
+                        }
+                    }
+
+                    //Ivoke or AImodel here
+                    //Bitmap bmp = new Bitmap(Bitmap.FromFile(sampleImage));
+                    string message1 = "";
+                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1); 
+                }
+                var res = string.Format("Please Upload a image.");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+            catch (Exception ex)
+            {
+                var res = string.Format("some Message");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
         }
+            
     }
 }
