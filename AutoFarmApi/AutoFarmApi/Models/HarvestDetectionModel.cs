@@ -26,10 +26,9 @@ namespace AutoFarmApi.Models
             return "NO_PLANT";
         }
 
-        public string GetAction(String filename)
+        public string GetAction(Bitmap bmp)
         {
-            string modelFilePath = Path.Combine(domainBaseDirectory, @"Resources\autofarm_bestmodel237.model");
-            
+            string modelFilePath = Path.Combine(domainBaseDirectory, @"Resources\z3-400.model");
             Function modelFunc = Function.Load(modelFilePath, DeviceDescriptor.CPUDevice);
 
             Variable inputVar = modelFunc.Arguments.Single();
@@ -48,7 +47,7 @@ namespace AutoFarmApi.Models
 
             var inputDataMap = new Dictionary<Variable, Value>();
             var outputDataMap = new Dictionary<Variable, Value>();
-            Bitmap bmp = new Bitmap(Bitmap.FromFile(filename));
+            
             var resized = bmp.Resize((int)imageWidth, (int)imageHeight, true);
             List<float> resizedCHW = resized.ParallelExtractCHW();
 
