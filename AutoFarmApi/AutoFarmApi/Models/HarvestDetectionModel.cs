@@ -28,7 +28,8 @@ namespace AutoFarmApi.Models
 
         public string GetAction(Bitmap bmp)
         {
-            string modelFilePath = Path.Combine(domainBaseDirectory, @"Resources\z3-400.model");
+
+            string modelFilePath = Path.Combine(domainBaseDirectory, @"Resources\MixDetection800-07252017.model");
 
             if (!File.Exists(modelFilePath))
             {
