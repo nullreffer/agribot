@@ -147,6 +147,42 @@
     <Content Include="Resources\EvalImages\64_64IMG_1355.JPG" />
     <Content Include="Resources\EvalImages\64_64IMG_1356.JPG" />
     <Content Include="Resources\EvalImages\64_64IMG_1357.JPG" />
+    <Content Include="Resources\EvalImages\image_1501044965.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\EvalImages\image_1501045323.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\EvalImages\image_1501045326.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\EvalImages\image_1501045331.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\EvalImages\image_1501045343.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\EvalImages\image_1501045357.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\EvalImages\image_1501045370.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\EvalImages\image_1501045382.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\EvalImages\image_1501045394.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\EvalImages\image_1501045406.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\EvalImages\image_1501045418.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\EvalImages\image_1501045430.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +209,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\AutoFarmApi20170724040859 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\hackathonvm - Web Deploy.pubxml" />
+    <Content Include="Resources\MixDetection800-07252017.model" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

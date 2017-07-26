@@ -14,7 +14,7 @@ namespace AutoFarmApi.Tests
         [TestMethod]
         public void TestNoPlantOutOutValue()
         {
-            string imageName = @"C:\Users\nirama\Documents\Visual Studio 2015\Projects\MINST_Eval\64_64IMG_1351.JPG";
+            string imageName = @"C:\Users\nirama\Documents\Visual Studio 2015\Projects\MINST_Eval\image_1501044965.JPG";
             Bitmap bmp = new Bitmap(Bitmap.FromFile(imageName));
 
             HarvestDetectionModel model = new HarvestDetectionModel();
