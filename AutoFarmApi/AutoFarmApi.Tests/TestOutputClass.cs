@@ -8,13 +8,14 @@ using System.Net.Http;
 
 namespace AutoFarmApi.Tests
 {
+    [DeploymentItem(@"Resources\z3-400.model")]
     [TestClass]
      public class TestOutputClass
     {
         [TestMethod]
         public void TestNoPlantOutOutValue()
         {
-            string imageName = @"C:\Users\nirama\Documents\Visual Studio 2015\Projects\MINST_Eval\64_64IMG_1351.JPG";
+            string imageName = @"C:\Users\jadesai\Pictures\128_128IMG_1356.jpg"; // @"C:\Users\nirama\Documents\Visual Studio 2015\Projects\MINST_Eval\64_64IMG_1351.JPG";
             Bitmap bmp = new Bitmap(Bitmap.FromFile(imageName));
 
             HarvestDetectionModel model = new HarvestDetectionModel();
