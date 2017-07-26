@@ -2,7 +2,6 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Swashbuckle.Swagger.Annotations;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System;
@@ -29,10 +28,11 @@ namespace AutoFarmApi.Controllers
         public HttpResponseMessage Post()
         {
             Dictionary<string, object> dict = new Dictionary<string, object>();
+
+            string debug = ">>>>";
             string action = "NO_ACTION";
             try
             {
-
                 var httpRequest = System.Web.HttpContext.Current.Request;
 
                 foreach (string file in httpRequest.Files)
@@ -42,8 +42,9 @@ namespace AutoFarmApi.Controllers
                     var postedFile = httpRequest.Files[file];
                     if (postedFile != null && postedFile.ContentLength > 0)
                     {
-
-                        int MaxContentLength = 32 * 32 * 1; //Size = 1 MB
+                        debug += "posted file: " + postedFile.ToString() + "\n";
+                        debug += "posted file len: " + postedFile.ContentLength + "\n";
+                        int MaxContentLength = 32 * 32 * 10; //Size = 1 MB
 
                         IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
                         var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
@@ -52,7 +53,7 @@ namespace AutoFarmApi.Controllers
                         {
 
                             var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
-
+                            debug += message;
                             dict.Add("error", message);
                             return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
                         }
@@ -60,7 +61,7 @@ namespace AutoFarmApi.Controllers
                         {
 
                             var message = string.Format("Please Upload a file upto 1 mb.");
-
+                            debug += message;
                             dict.Add("error", message);
                             return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
                         }
@@ -75,13 +76,13 @@ namespace AutoFarmApi.Controllers
                         }
                     }
                 }
-                
-                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+                return Request.CreateResponse(HttpStatusCode.NotFound, debug);
             }
             catch (Exception ex)
             {
                 var res = string.Format("some Message " + ex.ToString());
                 dict.Add("error", res);
+                dict.Add("debug", debug);
                 return Request.CreateResponse(HttpStatusCode.NotFound, dict);
             }
         }

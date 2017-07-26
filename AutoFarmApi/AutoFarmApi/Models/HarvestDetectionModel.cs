@@ -28,7 +28,14 @@ namespace AutoFarmApi.Models
 
         public string GetAction(Bitmap bmp)
         {
+
             string modelFilePath = Path.Combine(domainBaseDirectory, @"Resources\MixDetection800-07252017.model");
+
+            if (!File.Exists(modelFilePath))
+            {
+                throw new FileNotFoundException("Not found " + modelFilePath);
+            }
+
             Function modelFunc = Function.Load(modelFilePath, DeviceDescriptor.CPUDevice);
 
             Variable inputVar = modelFunc.Arguments.Single();
