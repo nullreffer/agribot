@@ -207,9 +207,9 @@
     <Content Include="Resources\z3-400.model">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Properties\PublishProfiles\AutoFarmApi20170724040859 - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\hackathonvm - Web Deploy.pubxml" />
-    <Content Include="Resources\MixDetection800-07252017.model" />
+    <Content Include="Resources\MixDetection800-07252017.model">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -219,6 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
